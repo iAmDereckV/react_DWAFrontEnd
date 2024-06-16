@@ -6,8 +6,12 @@ import CustomModal from "./CustomModal";
 import PersonForm from "./PersonForm";
 
 const PersonLayout = () => {
-  const { personData, openModal, setOpenModal, createPersons, deletePersons } =
-    usePerson();
+  const {
+    personData,
+    openModal,
+    setOpenModal,
+    createPersons /* deletePersons */,
+  } = usePerson();
 
   return (
     <>
@@ -20,7 +24,7 @@ const PersonLayout = () => {
         Nueva Persona
       </Button>
 
-      <PersonTable data={personData} deletePersons={deletePersons} />
+      <PersonTable data={personData} /* deletePersons={deletePersons} */ />
       <CustomModal
         open={openModal}
         setOpen={setOpenModal}

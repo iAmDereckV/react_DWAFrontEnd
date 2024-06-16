@@ -21,13 +21,13 @@ const usePerson = () => {
       // Handle the error
     }
   };
-  const deletePersons = async (id: number) => {
-    try {
-      const response = await axios.delete(`v1/persons/${id}`);
-    } catch (error) {
-      // Handle the error
-    }
-  };
+  // const deletePersons = async (id: number) => {
+  //   try {
+  //     const response = await axios.delete(`v1/persons/${id}`);
+  //   } catch (error) {
+  //     // Handle the error
+  //   }
+  // };
 
   useEffect(() => {
     // if (!openModal) {
@@ -35,7 +35,12 @@ const usePerson = () => {
     // }
     !openModal && getPersons();
   }, [openModal]);
-  return { personData, openModal, setOpenModal, createPersons, deletePersons };
+  return {
+    personData,
+    openModal,
+    setOpenModal,
+    createPersons /* deletePersons  */,
+  };
 };
 
 export default usePerson;
