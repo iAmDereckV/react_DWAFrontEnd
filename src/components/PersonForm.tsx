@@ -7,9 +7,9 @@ interface PersonFormProp {
   createPersons: (value: PersonRequest) => void;
 }
 const PersonForm = ({ setOpenModal, createPersons }: PersonFormProp) => {
-  const [inputName, setInputName] = useState("");
-  const [inputAddress, setInputAddress] = useState("");
-  const [inputPhone, setInputPhone] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
 
   return (
     <>
@@ -20,7 +20,7 @@ const PersonForm = ({ setOpenModal, createPersons }: PersonFormProp) => {
             label="Name"
             variant="standard"
             onChange={(e) => {
-              setInputName(e.target.value);
+              setName(e.target.value);
             }}
           />
         </Grid>
@@ -30,7 +30,7 @@ const PersonForm = ({ setOpenModal, createPersons }: PersonFormProp) => {
             label="Address"
             variant="standard"
             onChange={(e) => {
-              setInputAddress(e.target.value);
+              setAddress(e.target.value);
             }}
           />
         </Grid>
@@ -40,7 +40,7 @@ const PersonForm = ({ setOpenModal, createPersons }: PersonFormProp) => {
             label="Phone"
             variant="standard"
             onChange={(e) => {
-              setInputPhone(e.target.value);
+              setPhone(e.target.value);
             }}
           />
         </Grid>
@@ -49,9 +49,9 @@ const PersonForm = ({ setOpenModal, createPersons }: PersonFormProp) => {
         autoFocus
         onClick={() => {
           const request: PersonRequest = {
-            name: inputName,
-            address: inputAddress,
-            phone: inputPhone,
+            name: name,
+            address: address,
+            phone: phone,
           };
           createPersons(request);
           setOpenModal(false);

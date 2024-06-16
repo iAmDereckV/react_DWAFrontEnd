@@ -30,7 +30,7 @@ const CustomModal = ({ open, setOpen, title, children }) => {
         open={open}
       >
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-         {title}
+          {title}
         </DialogTitle>
         <IconButton
           aria-label="close"

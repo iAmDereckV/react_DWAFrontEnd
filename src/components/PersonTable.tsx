@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Button,
   Paper,
   Table,
   TableBody,
@@ -9,22 +10,23 @@ import {
   TableRow,
 } from "@mui/material";
 import { Person } from "../PersonModel";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface PersonTableProp {
   data: Person[];
   deletePersons: (id: number) => void;
 }
-const PersonTable = ({ data }: PersonTableProp) => {
+const PersonTable = ({ data, deletePersons }: PersonTableProp) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="right">Id</TableCell>
-            <TableCell align="right">Name</TableCell>
-            <TableCell align="right">Address</TableCell>
-            <TableCell align="right">Phone</TableCell>
-            <TableCell align="right">Action</TableCell>
+            <TableCell align="center">Id</TableCell>
+            <TableCell align="center">Name</TableCell>
+            <TableCell align="center">Address</TableCell>
+            <TableCell align="center">Phone</TableCell>
+            <TableCell align="center">Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -33,14 +35,23 @@ const PersonTable = ({ data }: PersonTableProp) => {
               key={row.name}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell align="right">{row.id}</TableCell>
-
-              <TableCell component="th" scope="row">
-                {row.name}
+              <TableCell component="th" scope="row" align="center">
+                {row.id}
               </TableCell>
-              <TableCell align="right">{row.address}</TableCell>
-              <TableCell align="right">{row.phone}</TableCell>
-              <TableCell align="right">X</TableCell>
+
+              <TableCell align="left">{row.name}</TableCell>
+              <TableCell align="left">{row.address}</TableCell>
+              <TableCell align="left">{row.phone}</TableCell>
+              <TableCell align="center">
+                <Button
+                  // autoFocus
+                  onClick={() => {
+                    deletePersons(row.id);
+                  }}
+                >
+                  <DeleteIcon />
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

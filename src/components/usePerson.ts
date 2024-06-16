@@ -12,34 +12,37 @@ const usePerson = () => {
       setPersonData(response.data);
     } catch (error) {
       // Handle the error
+      console.log(error.message);
     }
   };
   const createPersons = async (request: PersonRequest) => {
     try {
       const response = await axios.post("v1/persons", request);
+      // getPersons();
     } catch (error) {
       // Handle the error
+      console.log(error.message);
     }
   };
-  // const deletePersons = async (id: number) => {
-  //   try {
-  //     const response = await axios.delete(`v1/persons/${id}`);
-  //   } catch (error) {
-  //     // Handle the error
-  //   }
-  // };
+  const deletePersons = async (id: number) => {
+    try {
+      const response = await axios.delete(`v1/persons/${id}`);
+      getPersons();
+    } catch (error) {
+      // Handle the error
+      console.log(error.message);
+    }
+  };
 
   useEffect(() => {
-    // if (!openModal) {
-    //   getPersons();
-    // }
     !openModal && getPersons();
   }, [openModal]);
   return {
     personData,
     openModal,
     setOpenModal,
-    createPersons /* deletePersons  */,
+    createPersons,
+    deletePersons,
   };
 };
 
