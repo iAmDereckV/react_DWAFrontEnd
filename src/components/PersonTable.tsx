@@ -11,12 +11,18 @@ import {
 } from "@mui/material";
 import { Person } from "../PersonModel";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 interface PersonTableProp {
   data: Person[];
   deletePersons: (id: number) => void;
+  getPersonsId: (id: number) => void;
 }
-const PersonTable = ({ data, deletePersons }: PersonTableProp) => {
+const PersonTable = ({
+  data,
+  deletePersons,
+  getPersonsId,
+}: PersonTableProp) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -32,7 +38,7 @@ const PersonTable = ({ data, deletePersons }: PersonTableProp) => {
         <TableBody>
           {data.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row" align="center">
@@ -44,12 +50,19 @@ const PersonTable = ({ data, deletePersons }: PersonTableProp) => {
               <TableCell align="left">{row.phone}</TableCell>
               <TableCell align="center">
                 <Button
-                  // autoFocus
                   onClick={() => {
-                    deletePersons(row.id);
+                    getPersonsId(row.id);
+                    // setOpenModalEdit(true);
                   }}
                 >
-                  <DeleteIcon />
+                  <EditIcon />
+                </Button>
+                <Button
+                  onClick={() => {
+                    confirm("Desea Borrar") && deletePersons(row.id);
+                  }}
+                >
+                  <DeleteIcon color="primary" />
                 </Button>
               </TableCell>
             </TableRow>
